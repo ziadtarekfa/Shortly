@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+    .list-item {
+        @apply cursor-pointer;
+    }
+
+    .list-item:hover {
+        @apply text-primary;
+    }
+}

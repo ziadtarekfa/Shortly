@@ -13,7 +13,8 @@ module.exports = {
         darkPurple: '#3A3053'
       },
       backgroundImage: {
-        'bg-boost': "url('../../public/assets/bg-boost-desktop.svg')"
+        'bg-boost': "url('../../public/assets/bg-boost-desktop.svg')",
+        'bg-shorten': "url('../../public/assets/bg-shorten-desktop.svg')"
       }
     }
   },

@@ -1,5 +1,11 @@
 import Card from "@/components/Card"
+import LinkItem from "@/components/LinkItem";
 import Image from "next/image"
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+import { useRef, useState } from "react";
+import Head from "next/head";
 export default function Home() {
   const cards = [
     {
@@ -18,9 +24,33 @@ export default function Home() {
       text: "Boost your brand recognition with each click.Generic links dont mean a thing.Branded links help instill confidence in your content."
     }
   ];
+  const [shorteningResults, setShorteningResults] = useState([]);
+  const shortenLink = async (e) => {
+    e.preventDefault();
+    const inputLink = linkRef.current.value;
+
+    const response = await fetch(`https://api.shrtco.de/v2/shorten?url=${inputLink}`);
+    const data = await response.json();
+    if (data.ok === true) {
+      const updatedItems = [...shorteningResults, data];
+      setShorteningResults(updatedItems);
+    }
+    else {
+      toast.error(data.error, {
+        position: 'top-right'
+      })
+    }
+
+  }
+  const linkRef = useRef();
   return (
+
     <main>
-      <div >
+      <ToastContainer />
+      <Head>
+        <title>Shortly</title>
+      </Head>
+      <div className="pb-20">
         <header className="flex flex-row justify-between px-[120px] mt-10">
           <div className="flex flex-row">
             <Image src='assets/logo.svg' height={33} width={121} alt="logo" />
@@ -48,9 +78,32 @@ export default function Home() {
         </div>
       </div>
       <section className="bg-gray-100 mt-20">
+        <div className="absolute left-1/2 top-[710px] transform -translate-x-1/2 -translate-y-1/2 bg-darkPurple bg-bg-shorten bg-cover h-32 w-1/2 rounded-lg px-10">
+          <form className="flex items-center justify-between h-full" onSubmit={shortenLink}>
+            <input required ref={linkRef} className="p-2 pl-6 rounded w-3/4 outline-none" placeholder="Shorten a link here.." />
+            <button className="bg-primary text-white font-bold py-2 px-6 rounded-lg w-30 hover:bg-teal-200" >Shorten It!</button>
+          </form>
 
-        <div className="flex flex-col justify-center items-center">
-          <h2 className="font-bold text-2xl mt-8">Advanced Statistics</h2>
+        </div>
+
+        {
+          shorteningResults.length > 0 &&
+          <div className="flex flex-col w-1/2 ml-auto mr-auto pt-16 rounded">
+            {
+              shorteningResults.map((data, index) => {
+                return (
+
+                  <LinkItem key={index} originalLink={data.result.original_link} shortenedLink={data.result.full_short_link} />
+                );
+              })
+            }
+
+
+          </div>
+        }
+
+        <div className="flex flex-col justify-center items-center  pt-24">
+          <h2 className="font-bold text-2xl">Advanced Statistics</h2>
           <p className="text-gray-400 mt-2 font-semibold">Track how your links are performing across the web with
             our advanced statistics dashboard.</p>
         </div>
@@ -79,27 +132,27 @@ export default function Home() {
           <div className="flex flex-col">
             <h2 className="text-white font-bold">Features</h2>
             <ul className="flex flex-col text-gray-500 font-medium">
-              <li className=" hover:text-primary cursor-pointer">Link Shortening</li>
-              <li className=" hover:text-primary cursor-pointer">Branded Links</li>
-              <li className=" hover:text-primary cursor-pointer">Analytics</li>
+              <li className="list-item">Link Shortening</li>
+              <li className="list-item">Branded Links</li>
+              <li className="list-item">Analytics</li>
             </ul>
           </div>
           <div className="flex flex-col">
             <h2 className="text-white font-bold">Resources</h2>
             <ul className="flex flex-col text-gray-500 font-medium">
-              <li className=" hover:text-primary cursor-pointer">Blog</li>
-              <li className=" hover:text-primary cursor-pointer">Developers</li>
-              <li className=" hover:text-primary cursor-pointer">Support</li>
+              <li className="list-item">Blog</li>
+              <li className="list-item">Developers</li>
+              <li className="list-item">Support</li>
             </ul>
 
           </div>
           <div className="flex flex-col">
             <h2 className="text-white font-bold">Company</h2>
             <ul className="flex flex-col text-gray-500 font-medium">
-              <li className=" hover:text-primary cursor-pointer">About</li>
-              <li className=" hover:text-primary cursor-pointer">Out Team</li>
-              <li className=" hover:text-primary cursor-pointer">Careers</li>
-              <li className=" hover:text-primary cursor-pointer">Contact</li>
+              <li className="list-item">About</li>
+              <li className="list-item">Out Team</li>
+              <li className="list-item">Careers</li>
+              <li className="list-item">Contact</li>
             </ul>
           </div>
           <div className="flex h-fit justify-between w-[140px]">
@@ -111,5 +164,7 @@ export default function Home() {
         </div>
       </footer>
     </main>
+
+
   )
 }

@@ -2,9 +2,9 @@ import Image from "next/image";
 
 const Card = ({ icon, title, text }) => {
     return (
-        <div className="bg-white w-80 lg:mr-4 rounded-lg pt-10 p-7 mb-5">
+        <div className="bg-white rounded-lg p-5 pt-10 lg:mr-6 mt-6" >
             <div className="bg-violet-950 rounded-full w-fit p-4">
-                <Image src='assets/icon-brand-recognition.svg' width={30} height={30} alt="brand_recognition" />
+                <Image src={`assets/${icon}`} width={30} height={30} alt={`icon_${title}`} />
             </div>
             <h4 className="font-bold text-lg mt-8 ">{title}</h4>
             <p className="text-gray-400 mt-4">{text}</p>

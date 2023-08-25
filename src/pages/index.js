@@ -7,24 +7,9 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useRef, useState } from "react";
 import Head from "next/head";
 import Footer from "@/components/Footer";
+import CardsList from "@/components/CardsList";
 export default function Home() {
-  const cards = [
-    {
-      id: 1,
-      title: "Brand Recognition",
-      text: "Boost your brand recognition with each click.Generic links dont mean a thing.Branded links help instill confidence in your content."
-    },
-    {
-      id: 2,
-      title: "Brand Recognition",
-      text: "Boost your brand recognition with each click.Generic links dont mean a thing.Branded links help instill confidence in your content."
-    },
-    {
-      id: 3,
-      title: "Brand Recognition",
-      text: "Boost your brand recognition with each click.Generic links dont mean a thing.Branded links help instill confidence in your content."
-    }
-  ];
+
   const [shorteningResults, setShorteningResults] = useState([]);
   const shortenLink = async (e) => {
     e.preventDefault();
@@ -107,61 +92,47 @@ export default function Home() {
             <p className="text-gray-400 mt-2 ml-1">Build your brands recognition and get detailed <br /> insights on how your links are performing.</p>
             <button className="bg-primary ml-1 text-white font-bold py-2 px-6 rounded-3xl mt-4 w-40 hover:bg-teal-200">Get Started</button>
           </div>
-
-
         </div>
 
       </div>
-      <div className=" relative bg-darkPurple w-3/5 mx-auto bottom-[-64px] z-40 bg-bg-shorten bg-cover h-32 rounded-lg">
-        <form className="flex flex-col justify-around h-full z-40 p-4" onSubmit={shortenLink}>
-          <input required ref={linkRef} className=" w-full p-2 pl-4 rounded outline-none" placeholder="Shorten a link here.." />
-          <button className="bg-primary w-full  text-white font-bold py-2 px-6 rounded-lg  hover:bg-teal-200" >Shorten It!</button>
+      <div className=" relative bg-darkPurple w-3/5 mx-auto bottom-[-64px]  bg-bg-shorten bg-cover rounded-lg">
+        <form className="flex flex-col justify-around p-4" onSubmit={shortenLink}>
+          <input required ref={linkRef} className="p-2 pl-4 rounded outline-none" placeholder="Shorten a link here.." />
+          <button className="bg-primary text-white font-bold mt-4 py-2 px-6 rounded-lg  hover:bg-teal-200" >Shorten It!</button>
         </form>
       </div>
 
       <section className="bg-gray-100">
-        {/* TO BE CONSIDERED */}
 
         {
           shorteningResults.length > 0 &&
-          <div className="flex flex-col w-1/2 ml-auto mr-auto pt-16 rounded">
+          <div className="flex flex-col w-3/5 mx-auto pt-16 rounded">
             {
               shorteningResults.map((data, index) => {
                 return (
-
                   <LinkItem key={index} originalLink={data.result.original_link} shortenedLink={data.result.full_short_link} />
                 );
               })
             }
-
-
           </div>
         }
 
-        <div className="flex flex-col justify-center items-center pt-24">
+        <div className="flex flex-col justify-center items-center text-center pt-24">
           <h2 className="font-bold text-2xl">Advanced Statistics</h2>
-          <p className="text-gray-400 mt-2 font-semibold text-center">Track how your links are performing across the web with
+          <p className="text-gray-400 mt-2 font-semibold">Track how your links are performing across the web with
             our advanced statistics dashboard.</p>
         </div>
-        <div className="flex flex-col lg:flex-row lg:pl-20 lg:pr-14 justify-between items-center pb-12 mt-12">
-          {
-            cards.map((card) => {
-              return (
-                <Card key={card.id} title={card.title} text={card.text} />
-              )
-            })
-          }
-        </div>
+        <CardsList />
 
       </section>
 
-      <section className="flex justify-center  items-center bg-darkPurple bg-bg-boost bg-no-repeat bg-cover p-10">
+      <section className="flex justify-center items-center bg-darkPurple bg-bg-boost bg-no-repeat bg-cover p-10">
         <div className="w-fit flex items-center flex-col">
-          <h2 className="font-bold text-3xl text-white">Boost your links today</h2>
+          <h2 className="font-bold text-3xl text-white text-center">Boost your links today</h2>
           <button className="bg-primary text-white font-bold py-2 px-6 rounded-3xl mt-8 w-40 hover:bg-teal-200">Get Started</button>
-
         </div>
       </section>
+
       <Footer />
     </main>
 

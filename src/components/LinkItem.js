@@ -10,11 +10,12 @@ const LinkItem = ({ originalLink, shortenedLink }) => {
         btn.textContent = 'Copied!';
     }
     return (
-        <div className="flex p-5 bg-white justify-between items-center mt-3">
+        <div className="flex flex-col lg:flex-row p-5 bg-white justify-between mt-3 rounded-lg lg:items-center ">
             <p>{originalLink}</p>
-            <div className="flex items-center" >
+            <hr className="lg:hidden my-2"/>
+            <div className="flex flex-col lg:flex-row lg:justify-end lg:items-center w-full" >
                 <p className="mr-5 text-primary font-bold">{shortenedLink}</p>
-                <button ref={copyRef} onClick={handleCopy} className="bg-primary text-white font-bold py-1 px-6 rounded   hover:bg-teal-200">Copy</button>
+                <button ref={copyRef} onClick={handleCopy} className="bg-primary mt-2 lg:mt-0 text-white font-bold py-1 px-6 rounded   hover:bg-teal-200">Copy</button>
             </div>
         </div>
     );

@@ -42,6 +42,12 @@ export default function Home() {
     }
 
   }
+  const [isVisible, setIsVisible] = useState(false);
+
+  const toggleMenu = () => {
+    setIsVisible(!isVisible);
+  };
+
   const linkRef = useRef();
   return (
 
@@ -50,41 +56,70 @@ export default function Home() {
       <Head>
         <title>Shortly</title>
       </Head>
-      <div className="pb-20">
-        <header className="flex flex-row justify-between px-[120px] mt-10">
-          <div className="flex flex-row">
-            <Image src='assets/logo.svg' height={33} width={121} alt="logo" />
-            <ul className="flex flex-row items-center ml-16 justify-between w-64">
-              <li className="text-gray-400 font-bold text-sm hover:text-black cursor-pointer">Features</li>
-              <li className="text-gray-400 font-bold text-sm hover:text-black cursor-pointer">Pricing</li>
-              <li className="text-gray-400 font-bold text-sm hover:text-black cursor-pointer">Resources</li>
+      <div className="pb-20  lg:pl-20">
+        <header className="flex flex-col justify-between mt-10">
+          <div className="flex flex-row px-4 justify-between lg:hidden">
+            {/* mobile */}
+            <Image src='assets/logo.svg' height={33} width={100} alt="logo" />
+            <Image className="lg:hidden" onClick={toggleMenu} src='assets/menu.svg' height={33} width={33} alt="menu" />
+          </div>
+
+          <div className="hidden lg:flex flex-row px-4 pr-20 ">
+            {/* Desktop */}
+            <div className="flex flex-row items-center w-full">
+              <Image src='assets/logo.svg' height={33} width={100} alt="logo" />
+              <Image className="lg:hidden" onClick={toggleMenu} src='assets/menu.svg' height={33} width={33} alt="menu" />
+              <ul className="flex flex-row ml-20">
+                <li className="text-gray-400 font-bold text-sm hover:text-black cursor-pointer">Features</li>
+                <li className="text-gray-400 font-bold text-sm hover:text-black cursor-pointer ml-4">Pricing</li>
+                <li className="text-gray-400 font-bold text-sm hover:text-black cursor-pointer ml-4">Resources</li>
+              </ul>
+            </div>
+            <div className="flex w-full items-center justify-end">
+              <span className="text-gray-400 p-2 font-bold text-sm hover:text-black cursor-pointer">Login</span>
+              <button className="bg-primary mt-2 ml-4 w-30 text-white font-bold py-2 px-6 rounded-3xl hover:bg-teal-200 ">Sign Up</button>
+            </div>
+          </div>
+
+          <div className={isVisible ? "visible absolute w-4/5 mt-10 left-1/2 transform -translate-x-1/2  flex flex-col items-center px-6 py-10 pt-8 bg-darkPurple rounded-md" : "hidden"} >
+            <ul className="w-full text-center">
+              <li className="text-white p-2 font-bold text-lg hover:text-black cursor-pointer">Features</li>
+              <li className="text-white p-2 font-bold text-lg hover:text-black cursor-pointer">Pricing</li>
+              <li className="text-white p-2 font-bold text-lg hover:text-black cursor-pointer">Resources</li>
             </ul>
+            <hr className="w-full px-2 my-4  border-gray-500" />
+            <div className="flex-col flex w-full text-center">
+              <span className="text-white p-2 font-bold text-lg">Login</span>
+              <button className="bg-primary mt-2 text-white font-bold py-2 px-6 rounded-3xl hover:bg-teal-200 ">Sign Up</button>
+            </div>
           </div>
-          <div>
-            <span className="text-gray-400 font-bold text-m mr-10">Login</span>
-            <button className="bg-primary text-white font-bold py-2 px-6 rounded-3xl hover:bg-teal-200 ">Sign Up</button>
-          </div>
+
+
+
         </header>
-        <div className="flex pl-[120px] mt-20 justify-between">
-          <div className=" flex  flex-col justify-center ">
-            <h1 className="font-bold text-5xl">More than just shorter links</h1>
+        <div className="flex flex-col mt-20 px-4 lg:flex-row justify-between">
+        <div>
+            <Image className="w-full" width={400} height={400} alt="office" src={'assets/illustration-working.svg'} />
+          </div>
+          <div className=" flex flex-col items-center text-center mt-4 lg:w-4/5 lg:text-start lg:items-start">
+            <h1 className="font-bold text-4xl lg:text-5xl">More than just <br /> shorter links</h1>
             <p className="text-gray-400 mt-2 ml-1">Build your brands recognition and get detailed <br /> insights on how your links are performing.</p>
-            <button className="bg-primary ml-1 text-white font-bold py-2 px-6 rounded-3xl mt-8 w-40 hover:bg-teal-200">Get Started</button>
+            <button className="bg-primary ml-1 text-white font-bold py-2 px-6 rounded-3xl mt-4 w-40 hover:bg-teal-200">Get Started</button>
           </div>
-          <div>
-            <Image width={600} height={600} alt="office" src={'assets/illustration-working.svg'} />
-          </div>
+    
 
         </div>
+
       </div>
-      <section className="bg-gray-100 mt-20">
-        <div className="absolute left-1/2 top-[710px] transform -translate-x-1/2 -translate-y-1/2 bg-darkPurple bg-bg-shorten bg-cover h-32 w-1/2 rounded-lg px-10">
-          <form className="flex items-center justify-between h-full" onSubmit={shortenLink}>
-            <input required ref={linkRef} className="p-2 pl-6 rounded w-3/4 outline-none" placeholder="Shorten a link here.." />
-            <button className="bg-primary text-white font-bold py-2 px-6 rounded-lg w-30 hover:bg-teal-200" >Shorten It!</button>
-          </form>
+      <div className=" relative bg-darkPurple w-3/5 mx-auto bottom-[-64px] z-40 bg-bg-shorten bg-cover h-32 rounded-lg">
+        <form className="flex flex-col justify-around h-full z-40 p-4" onSubmit={shortenLink}>
+          <input required ref={linkRef} className=" w-full p-2 pl-4 rounded outline-none" placeholder="Shorten a link here.." />
+          <button className="bg-primary w-full  text-white font-bold py-2 px-6 rounded-lg  hover:bg-teal-200" >Shorten It!</button>
+        </form>
+      </div>
 
-        </div>
+      <section className="bg-gray-100">
+        {/* TO BE CONSIDERED */}
 
         {
           shorteningResults.length > 0 &&
@@ -102,12 +137,12 @@ export default function Home() {
           </div>
         }
 
-        <div className="flex flex-col justify-center items-center  pt-24">
+        <div className="flex flex-col justify-center items-center pt-24">
           <h2 className="font-bold text-2xl">Advanced Statistics</h2>
-          <p className="text-gray-400 mt-2 font-semibold">Track how your links are performing across the web with
+          <p className="text-gray-400 mt-2 font-semibold text-center">Track how your links are performing across the web with
             our advanced statistics dashboard.</p>
         </div>
-        <div className="flex justify-between px-32 pb-20 mt-12">
+        <div className="flex flex-col lg:flex-row lg:pl-20 lg:pr-14 justify-between items-center pb-12 mt-12">
           {
             cards.map((card) => {
               return (
@@ -127,28 +162,28 @@ export default function Home() {
         </div>
       </section>
       <footer className="bg-neutral-800">
-        <div className="flex justify-between px-44 py-20">
+        <div className="flex flex-col lg:flex-row items-center justify-between px-44 py-12 lg:px-20 lg:items-start">
           <h1 className="text-white font-bold text-3xl" >Shortly</h1>
           <div className="flex flex-col">
-            <h2 className="text-white font-bold">Features</h2>
-            <ul className="flex flex-col text-gray-500 font-medium">
+            <h2 className="text-white font-bold text-center lg:text-left">Features</h2>
+            <ul className="flex flex-col text-gray-500 font-medium text-center lg:text-left lg:mt-2 mt-4">
               <li className="list-item">Link Shortening</li>
               <li className="list-item">Branded Links</li>
               <li className="list-item">Analytics</li>
             </ul>
           </div>
           <div className="flex flex-col">
-            <h2 className="text-white font-bold">Resources</h2>
-            <ul className="flex flex-col text-gray-500 font-medium">
+            <h2 className="text-white font-bold text-center lg:text-left">Resources</h2>
+            <ul className="flex flex-col text-gray-500 font-medium text-center lg:text-left lg:mt-2 mt-4">
               <li className="list-item">Blog</li>
               <li className="list-item">Developers</li>
               <li className="list-item">Support</li>
             </ul>
 
           </div>
-          <div className="flex flex-col">
-            <h2 className="text-white font-bold">Company</h2>
-            <ul className="flex flex-col text-gray-500 font-medium">
+          <div className="flex flex-col justify-between">
+            <h2 className="text-white font-bold text-center lg:text-left">Company</h2>
+            <ul className="flex flex-col text-gray-500 font-medium text-center lg:text-left mt-4 lg:mt-2">
               <li className="list-item">About</li>
               <li className="list-item">Out Team</li>
               <li className="list-item">Careers</li>

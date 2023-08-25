@@ -6,6 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import { useRef, useState } from "react";
 import Head from "next/head";
+import Footer from "@/components/Footer";
 export default function Home() {
   const cards = [
     {
@@ -98,7 +99,7 @@ export default function Home() {
 
         </header>
         <div className="flex flex-col mt-20 px-4 lg:flex-row justify-between">
-        <div>
+          <div>
             <Image className="w-full" width={400} height={400} alt="office" src={'assets/illustration-working.svg'} />
           </div>
           <div className=" flex flex-col items-center text-center mt-4 lg:w-4/5 lg:text-start lg:items-start">
@@ -106,7 +107,7 @@ export default function Home() {
             <p className="text-gray-400 mt-2 ml-1">Build your brands recognition and get detailed <br /> insights on how your links are performing.</p>
             <button className="bg-primary ml-1 text-white font-bold py-2 px-6 rounded-3xl mt-4 w-40 hover:bg-teal-200">Get Started</button>
           </div>
-    
+
 
         </div>
 
@@ -161,43 +162,7 @@ export default function Home() {
 
         </div>
       </section>
-      <footer className="bg-neutral-800">
-        <div className="flex flex-col lg:flex-row items-center justify-between px-44 py-12 lg:px-20 lg:items-start">
-          <h1 className="text-white font-bold text-3xl" >Shortly</h1>
-          <div className="flex flex-col">
-            <h2 className="text-white font-bold text-center lg:text-left">Features</h2>
-            <ul className="flex flex-col text-gray-500 font-medium text-center lg:text-left lg:mt-2 mt-4">
-              <li className="list-item">Link Shortening</li>
-              <li className="list-item">Branded Links</li>
-              <li className="list-item">Analytics</li>
-            </ul>
-          </div>
-          <div className="flex flex-col">
-            <h2 className="text-white font-bold text-center lg:text-left">Resources</h2>
-            <ul className="flex flex-col text-gray-500 font-medium text-center lg:text-left lg:mt-2 mt-4">
-              <li className="list-item">Blog</li>
-              <li className="list-item">Developers</li>
-              <li className="list-item">Support</li>
-            </ul>
-
-          </div>
-          <div className="flex flex-col justify-between">
-            <h2 className="text-white font-bold text-center lg:text-left">Company</h2>
-            <ul className="flex flex-col text-gray-500 font-medium text-center lg:text-left mt-4 lg:mt-2">
-              <li className="list-item">About</li>
-              <li className="list-item">Out Team</li>
-              <li className="list-item">Careers</li>
-              <li className="list-item">Contact</li>
-            </ul>
-          </div>
-          <div className="flex h-fit justify-between w-[140px]">
-            <Image src={'assets/icon-facebook.svg'} height={20} width={20} alt="facebook" />
-            <Image src={'assets/icon-twitter.svg'} height={20} width={20} alt="twitter" />
-            <Image src={'assets/icon-pinterest.svg'} height={20} width={20} alt="pinterest" />
-            <Image src={'assets/icon-instagram.svg'} height={20} width={20} alt="instagram" />
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </main>
 
 

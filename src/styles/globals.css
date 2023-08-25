@@ -5,7 +5,6 @@
 @layer components {
     .list-item {
         @apply cursor-pointer;
-        /* @apply text-center */
     }
 
     .list-item:hover {

@@ -1,7 +1,9 @@
 # Shortly - Link Shortener Project
-Shortly is a web application built using Next.js that allows users to shorten long URLs, making them easier to share and manage. This project is designed to provide a simple and user-friendly interface for creating and using shortened links.<br/>
-The application is built using NextJs and Tailwind CSS.
+Shortly is a web application built using Next.js that allows users to shorten long URLs, making them easier to share and manage. This project is designed to provide a simple and user-friendly interface for creating and using shortened links.
+The application is built using  <h1>NextJs and Tailwind CSS.</h1>
 
+## Live Demo
+https://shortlyzt.netlify.app/
 ## Features
 - Shorten long URLs to easily share them with others.
 - Responsive design for optimal usage on various devices.

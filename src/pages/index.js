@@ -1,6 +1,6 @@
+import 'react-toastify/dist/ReactToastify.css';
 import LinkItem from "@/components/LinkItem";
 import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import { useRef, useState } from "react";
 import Head from "next/head";
 import Footer from "@/components/Footer";

@@ -1,15 +1,14 @@
-import Card from "@/components/Card"
 import LinkItem from "@/components/LinkItem";
-import Image from "next/image"
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
 import { useRef, useState } from "react";
 import Head from "next/head";
 import Footer from "@/components/Footer";
 import CardsList from "@/components/CardsList";
 import Header from "@/components/Header";
 import Intro from "@/components/Intro";
+
+
 export default function Home() {
 
   const [shorteningResults, setShorteningResults] = useState([]);
@@ -65,7 +64,7 @@ export default function Home() {
           </div>
         }
 
-        <div className="flex flex-col justify-center items-center text-center pt-24">
+        <div className="flex flex-col justify-center items-center text-center pt-24 px-5">
           <h2 className="font-bold text-2xl">Advanced Statistics</h2>
           <p className="text-gray-400 mt-2 font-semibold">Track how your links are performing across the web with
             our advanced statistics dashboard.</p>
